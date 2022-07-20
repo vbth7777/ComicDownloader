@@ -1,0 +1,36 @@
+﻿<Window
+    x:Class="ComicDownloader.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ComicDownloader"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view="clr-namespace:ComicDownloader.MVVM.View"
+    xmlns:viewModel="clr-namespace:ComicDownloader.MVVM.ViewModel"
+    Title="MainWindow"
+    Width="800"
+    Height="450"
+    AllowsTransparency="True"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.DataContext>
+        <viewModel:MainViewModel />
+    </Window.DataContext>
+    <Grid Background="#363635">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <view:TitleBarView
+            Grid.Row="0"
+            Background="#242423"
+            Tag="ComicDownloader" />
+        <Grid Grid.Row="1">
+            <view:DownloaderView HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <!--<view:SettingsView
+                Margin="20"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom" />-->
+        </Grid>
+    </Grid>
+</Window>

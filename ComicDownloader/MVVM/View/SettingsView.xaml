@@ -1,0 +1,57 @@
+﻿<UserControl
+    x:Class="ComicDownloader.MVVM.View.SettingsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ComicDownloader.MVVM.View"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Foreground="White"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="TextAlignment" Value="Right" />
+            <Setter Property="Margin" Value="10,20,10,5" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Border
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Background="Gray"
+            CornerRadius="30">
+            <materialDesign:PackIcon
+                Width="50"
+                Height="50"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                BorderBrush="Black"
+                BorderThickness="1"
+                Cursor="Hand"
+                Kind="Settings" />
+        </Border>
+        <Border
+            Width="350"
+            Height="100"
+            Background="#242423"
+            CornerRadius="10">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <TextBlock Text="Websites Data File: " />
+                    <TextBlock Text="UserAgent: " />
+                </StackPanel>
+                <StackPanel>
+                    <TextBox
+                        Width="190"
+                        Margin="0,15,0,0"
+                        Style="{StaticResource ModernTextBoxTheme}" />
+                    <TextBox
+                        Width="190"
+                        Margin="0,15,0,0"
+                        Style="{StaticResource ModernTextBoxTheme}" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

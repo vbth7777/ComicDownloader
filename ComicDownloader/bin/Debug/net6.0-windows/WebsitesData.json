@@ -1,0 +1,16 @@
+[
+  {
+    "Url": "http://www.nettruyenco.com/",
+    "Comics": {
+      "UrlComicsSelector": ".items .item .jtip",
+      "NextPageButtonSelector": ".next-page"
+    },
+    "Comic": {
+      "NameComicSelector": ".title-detail",
+      "ChaptersComicSelector": ".list-chapter .chapter > a"
+    },
+    "Chapter": {
+      "ImagesChapterSelector": ".page-chapter > img"
+    }
+  }
+]
