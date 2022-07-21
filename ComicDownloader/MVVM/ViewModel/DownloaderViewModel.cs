@@ -210,7 +210,7 @@ namespace ComicDownloader.MVVM.ViewModel
             {
                 DownloadingTask = Task.Run(() => 
                 { 
-                    DownloaderType1.ChapterDownloader(UrlText, selectors, Path);
+                    Downloader.ChapterDownloader(UrlText, selectors, Path);
                 });
             }
             else if (SelectedType == Enums.DownloadType.Comic)
@@ -218,7 +218,7 @@ namespace ComicDownloader.MVVM.ViewModel
                 DownloadingTask = Task.Run(() =>
                 {
                     DownloadingProgressDisplay();
-                    DownloaderType1.ComicDownloader(UrlText, selectors, Path,
+                    Downloader.ComicDownloader(UrlText, selectors, Path,
                         BeforeDownloadingComic, BeforeDownloadingChapter);
                     DownloadingProgressCollapsed();
                 });
@@ -229,7 +229,7 @@ namespace ComicDownloader.MVVM.ViewModel
                 {
                     DownloadingProgressPageTotalVisibility = Visibility.Visible;
                     DownloadingProgressDisplay();
-                    DownloaderType1.ComicsDownloader(UrlText, selectors, Path,
+                    Downloader.ComicsDownloader(UrlText, selectors, Path,
                         BeforeDownloadingComic, BeforeDownloadingChapter,
                         AfterDownloadedComics, AfterDownloadedComic);
                     DownloadingProgressCollapsed();

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Downloads\\Projects\\Downloader\\ComicDownloader\\ComicDownloader\\ComicDownloader.csproj": {}
+    "C:\\Users\\Admin\\Downloads\\Public\\Projects\\Downloader\\ComicDownloader\\ComicDownloader\\ComicDownloader.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Downloads\\Projects\\Downloader\\ComicDownloader\\ComicDownloader\\ComicDownloader.csproj": {
+    "C:\\Users\\Admin\\Downloads\\Public\\Projects\\Downloader\\ComicDownloader\\ComicDownloader\\ComicDownloader.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Downloads\\Projects\\Downloader\\ComicDownloader\\ComicDownloader\\ComicDownloader.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Downloads\\Public\\Projects\\Downloader\\ComicDownloader\\ComicDownloader\\ComicDownloader.csproj",
         "projectName": "ComicDownloader",
-        "projectPath": "C:\\Users\\Admin\\Downloads\\Projects\\Downloader\\ComicDownloader\\ComicDownloader\\ComicDownloader.csproj",
+        "projectPath": "C:\\Users\\Admin\\Downloads\\Public\\Projects\\Downloader\\ComicDownloader\\ComicDownloader\\ComicDownloader.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Downloads\\Projects\\Downloader\\ComicDownloader\\ComicDownloader\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\Downloads\\Public\\Projects\\Downloader\\ComicDownloader\\ComicDownloader\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

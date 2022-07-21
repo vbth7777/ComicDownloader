@@ -62,7 +62,7 @@ namespace ComicDownloader.Core
         }
 
     }
-    public static class DownloaderType1
+    public static class Downloader
     {
         public static void ChapterDownloader(string chapterUrl, WebsiteInformation cssSelectors, string path)
         {

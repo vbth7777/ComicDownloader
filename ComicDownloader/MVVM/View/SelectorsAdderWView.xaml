@@ -10,7 +10,7 @@
     xmlns:viewModel="clr-namespace:ComicDownloader.MVVM.ViewModel"
     Title="SelectorsAdderWView"
     Width="500"
-    Height="370"
+    Height="330"
     AllowsTransparency="True"
     WindowStyle="None"
     mc:Ignorable="d">
@@ -135,21 +135,12 @@
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                         <StackPanel>
                             <TextBlock Margin="0,5,10,15" Text="Website" />
-                            <TextBlock Text="Website Type" />
                         </StackPanel>
                         <StackPanel Width="250">
                             <TextBox
                                 Margin="0,0,0,10"
                                 Style="{StaticResource ModernTextBoxTheme}"
                                 Text="{Binding Website, UpdateSourceTrigger=PropertyChanged}" />
-                            <ComboBox
-                                MinHeight="20"
-                                Padding="5"
-                                HorizontalContentAlignment="Left"
-                                materialDesign:ColorZoneAssist.Mode="Inverted"
-                                BorderBrush="White"
-                                Foreground="White"
-                                Style="{StaticResource MaterialDesignOutlinedComboBox}" />
                         </StackPanel>
                     </StackPanel>
                     <Button
