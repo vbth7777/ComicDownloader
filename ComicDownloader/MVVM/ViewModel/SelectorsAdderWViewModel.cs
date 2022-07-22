@@ -9,6 +9,7 @@ using ComicDownloader.Core;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using ComicDownloader.Helper;
 
 namespace ComicDownloader.MVVM.ViewModel
 {
@@ -76,14 +77,14 @@ namespace ComicDownloader.MVVM.ViewModel
         void SaveSelectors(Button p)
         {
             string filePath = Variables.DataFilePath;
-            WebsiteInformation[] csses = JsonHelper.GetDeserializeJsonFromWebsitesData(filePath);
+            WebsiteInformation[] csses = JsonHelper.GetDeserializeJsonFromFile<WebsiteInformation[]>(filePath);
             WebsiteInformation css = new WebsiteInformation();
             css.Comics.NextPageButtonSelector = NextPageButtonSelector;
             css.Comics.UrlComicsSelector = UrlComicsSelector;
             css.Comic.NameComicSelector = NameComicSelector;
             css.Comic.ChaptersComicSelector = ChaptersComicSelector;
             css.Chapter.ImagesChapterSelector = ImagesChapterSelector;
-            css.Referer = Website;
+            css.Url = Website;
             JsonHelper.SerializeAndSaveJson(csses.Append(css), filePath);
             Window.GetWindow(p).Close();
         }

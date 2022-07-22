@@ -1,4 +1,5 @@
 ﻿using ComicDownloader.Core;
+using ComicDownloader.Helper;
 using Newtonsoft.Json;
 using System.IO;
 using System.Linq;
@@ -65,7 +66,7 @@ namespace ComicDownloader.MVVM.ViewModel
         }
         public SelectorsEditorWViewModel(WebsiteInformation css)
         {
-            Website = css.Referer;
+            Website = css.Url;
             NextPageButtonSelector = css.Comics.NextPageButtonSelector;
             UrlComicsSelector = css.Comics.UrlComicsSelector;
             NameComicSelector = css.Comic.NameComicSelector;
@@ -77,11 +78,11 @@ namespace ComicDownloader.MVVM.ViewModel
         void EditSelectors(Button p)
         {
             string filePath = Variables.DataFilePath;
-            WebsiteInformation[] csses = JsonHelper.GetDeserializeJsonFromWebsitesData(filePath);
+            WebsiteInformation[] csses = JsonHelper.GetDeserializeJsonFromFile<WebsiteInformation[]>(filePath);
             int length = csses.Length;
             for(int i = 0; i < length; i++)
             {
-                if(csses[i].Referer != Website)
+                if(csses[i].Url != Website)
                 {
                     continue;
                 }

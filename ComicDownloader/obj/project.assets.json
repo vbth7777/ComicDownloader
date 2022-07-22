@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net6.0-windows7.0": {
+    ".NETCoreApp,Version=v3.1": {
       "Fizzler/1.2.0": {
         "type": "package",
         "compile": {
@@ -60,10 +60,10 @@
       "Microsoft.Xaml.Behaviors.Wpf/1.1.39": {
         "type": "package",
         "compile": {
-          "lib/net5.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {}
+          "lib/netcoreapp3.1/Microsoft.Xaml.Behaviors.dll": {}
         },
         "runtime": {
-          "lib/net5.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {}
+          "lib/netcoreapp3.1/Microsoft.Xaml.Behaviors.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.WindowsDesktop.App.WPF"
@@ -269,7 +269,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net6.0-windows7.0": [
+    ".NETCoreApp,Version=v3.1": [
       "Fizzler.Systems.HtmlAgilityPack >= 1.2.1",
       "HtmlAgilityPack >= 1.11.43",
       "MaterialDesignThemes >= 4.5.0",
@@ -294,15 +294,15 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net6.0-windows7.0"
+        "netcoreapp3.1"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net6.0-windows7.0": {
-          "targetAlias": "net6.0-windows",
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -313,8 +313,8 @@
       }
     },
     "frameworks": {
-      "net6.0-windows7.0": {
-        "targetAlias": "net6.0-windows",
+      "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Fizzler.Systems.HtmlAgilityPack": {
             "target": "Package",

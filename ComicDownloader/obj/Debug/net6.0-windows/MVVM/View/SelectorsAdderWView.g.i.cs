@@ -57,7 +57,7 @@ namespace ComicDownloader.MVVM.View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ComicDownloader;V1.0.0.0;component/mvvm/view/selectorsadderwview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ComicDownloader;component/mvvm/view/selectorsadderwview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\MVVM\View\SelectorsAdderWView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -22,8 +22,7 @@ namespace ComicDownloader.Core
     }
     public class WebsiteInformation
     {
-        public string Referer { get; set; }
-        public Enums.WebsiteType WebsiteType { get; set; }
+        public string Url { get; set; }
         public ComicsSelectors Comics { get; set; }
         public ComicSelectors Comic { get; set; }
         public ChapterSelectors Chapter { get; set; }

@@ -5,6 +5,7 @@ using ComicDownloader.MVVM.View;
 using System.Windows.Controls;
 using System.Windows;
 using System.Threading.Tasks;
+using ComicDownloader.Helper;
 
 namespace ComicDownloader.MVVM.ViewModel
 {
@@ -173,7 +174,7 @@ namespace ComicDownloader.MVVM.ViewModel
         void LoadWebsites(object p = null)
         {
             string filePath = Variables.DataFilePath;
-            WebsiteInformation[] csses = JsonHelper.GetDeserializeJsonFromWebsitesData(filePath);
+            WebsiteInformation[] csses = JsonHelper.GetDeserializeJsonFromFile<WebsiteInformation[]>(filePath);
             if (csses.Length == 0) return;
             Websites = csses;
         }

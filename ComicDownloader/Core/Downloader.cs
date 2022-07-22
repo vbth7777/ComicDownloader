@@ -1,4 +1,5 @@
-﻿using Fizzler.Systems.HtmlAgilityPack;
+﻿using ComicDownloader.Helper;
+using Fizzler.Systems.HtmlAgilityPack;
 using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace ComicDownloader.Core
 {
     public static class DownloadHelper
     {
+        public delegate void TaskDownloader(string name, float onePercent, object o = null);
         public static string GetHtmlString(string url, string referer = null)
         {
             //webClient.Headers.Clear();
@@ -44,7 +46,6 @@ namespace ComicDownloader.Core
             doc.LoadHtml(GetHtmlString(url, referer));
             return doc.DocumentNode;
         }
-        public delegate void TaskDownloader(string name, float onePercent, object o = null);
         public static void ImageDownloader(string url, string path, string referer = null)
         {
             HttpHelper.DownloadFile(url, path, referer, Variables.UserAgent);
@@ -60,7 +61,6 @@ namespace ComicDownloader.Core
                 count++;
             }
         }
-
     }
     public static class Downloader
     {
@@ -87,7 +87,7 @@ namespace ComicDownloader.Core
                         imageUrls.Add(imageUrl);
                     }
                 }
-                ImagesDownloader(imageUrls, path, cssSelectors.Referer);
+                ImagesDownloader(imageUrls, path, cssSelectors.Url);
             }
             catch
             {
@@ -165,6 +165,4 @@ namespace ComicDownloader.Core
         }
 
     }
-
-
 }
