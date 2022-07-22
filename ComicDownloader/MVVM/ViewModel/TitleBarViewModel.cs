@@ -9,17 +9,24 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using ComicDownloader.Core;
+using ComicDownloader.MVVM.View;
 
 namespace ComicDownloader.MVVM.ViewModel
 {
     public class TitleBarViewModel : BaseViewModel
     {
         private Window win;
+        #region Commands
         public ICommand CloseCommand { get; set; }
         public ICommand MinimizeCommand { get; set; }
         public ICommand MaximizeCommand { get; set; }
         public ICommand MouseDownCommand { get; set; }
+        #endregion
         public TitleBarViewModel()
+        {
+            LoadCommands();
+        }
+        void LoadCommands()
         {
             CloseCommand = new RelayCommand<UserControl>(p => p is UserControl ? true : false, CloseWindow);
             MinimizeCommand = new RelayCommand<UserControl>(p => p is UserControl ? true : false, MinimizeWindow);

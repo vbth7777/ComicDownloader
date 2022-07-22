@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ComicDownloader.MVVM.ViewModel;
 
 namespace ComicDownloader.MVVM.View
 {

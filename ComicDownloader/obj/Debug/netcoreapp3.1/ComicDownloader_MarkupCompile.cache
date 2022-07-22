@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\Admin\Downloads\Public\Projects\Downloader\ComicDownloader\ComicDownloader\App.xaml
-853282009
+9-830091319
 
-221931598132
+24697062542
 199472681016
-MainWindow.xaml;MVVM\View\DownloaderView.xaml;MVVM\View\SelectorsAdderWView.xaml;MVVM\View\SelectorsEditorWView.xaml;MVVM\View\SettingsView.xaml;MVVM\View\TitleBarView.xaml;Theme\ModernButtonTheme.xaml;Theme\ModernTextBoxTheme.xaml;
+MainWindow.xaml;MVVM\View\DownloaderView.xaml;MVVM\View\MinimalTitleBarView.xaml;MVVM\View\SelectorsAdderWView.xaml;MVVM\View\SelectorsEditorWView.xaml;MVVM\View\SettingsView.xaml;MVVM\View\TitleBarView.xaml;Theme\ModernButtonTheme.xaml;Theme\ModernTextBoxTheme.xaml;
 
-True
+False
 
