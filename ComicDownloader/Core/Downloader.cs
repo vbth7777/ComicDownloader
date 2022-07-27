@@ -69,7 +69,7 @@ namespace ComicDownloader.Core
             try
             {
                 HtmlNode chapterNode = DownloadHelper.GetDocumentNode(chapterUrl);
-                HtmlNode[] imageNodes = chapterNode.QuerySelectorAll(cssSelectors.Chapter.ImagesChapterSelector).ToArray();
+                HtmlNode[] imageNodes = chapterNode.QuerySelectorAll(cssSelectors.Chapter.ChapterImagesSelector).ToArray();
                 List<string> imageUrls = new List<string>();
                 foreach (HtmlNode imageNode in imageNodes)
                 {
@@ -100,8 +100,8 @@ namespace ComicDownloader.Core
         {
             comicPath = DownloadHelper.GetValidDirectoryPath(comicPath);
             HtmlNode comicNode = DownloadHelper.GetDocumentNode(url);
-            string comicName = comicNode.QuerySelector(cssSelectors.Comic.NameComicSelector).InnerText.Trim();
-            HtmlNode[] chapterNodes = comicNode.QuerySelectorAll(cssSelectors.Comic.ChaptersComicSelector).Reverse().ToArray();
+            string comicName = comicNode.QuerySelector(cssSelectors.Comic.ComicNameSelector).InnerText.Trim();
+            HtmlNode[] chapterNodes = comicNode.QuerySelectorAll(cssSelectors.Comic.ComicChaptersSelector).Reverse().ToArray();
             comicPath += DownloadHelper.GetValidDirectoryName(comicName) + "\\";
             DownloadHelper.CreateDirectory(comicPath);
             //List<string> chapterPaths = new List<string>();
@@ -146,7 +146,7 @@ namespace ComicDownloader.Core
             HtmlNode comicsNode = DownloadHelper.GetDocumentNode(url);
             while (true)
             {
-                HtmlNode[] comicNodes = comicsNode.QuerySelectorAll(cssSelectors.Comics.UrlComicsSelector).ToArray();
+                HtmlNode[] comicNodes = comicsNode.QuerySelectorAll(cssSelectors.Comics.ComicUrlsSelector).ToArray();
                 float onePercentComicOfPage = (float)1 / comicNodes.Length * 100;
                 foreach (HtmlNode comicNode in comicNodes)
                 {

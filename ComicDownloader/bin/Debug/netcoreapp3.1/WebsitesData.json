@@ -2,15 +2,57 @@
   {
     "Url": "http://www.nettruyenco.com/",
     "Comics": {
-      "UrlComicsSelector": ".items .item .jtip",
+      "ComicUrlsSelector": null,
       "NextPageButtonSelector": ".items .item .jtip"
     },
     "Comic": {
-      "NameComicSelector": ".title-detail",
-      "ChaptersComicSelector": ".list-chapter .chapter > a"
+      "ComicNameSelector": null,
+      "ComicChaptersSelector": null
     },
     "Chapter": {
-      "ImagesChapterSelector": ".reading .page-chapter > img"
+      "ChapterImagesSelector": null
+    }
+  },
+  {
+    "Url": "123",
+    "Comics": {
+      "ComicUrlsSelector": "",
+      "NextPageButtonSelector": ""
+    },
+    "Comic": {
+      "ComicNameSelector": "",
+      "ComicChaptersSelector": ""
+    },
+    "Chapter": {
+      "ChapterImagesSelector": ""
+    }
+  },
+  {
+    "Url": "weqe",
+    "Comics": {
+      "ComicUrlsSelector": "asd",
+      "NextPageButtonSelector": "asdasd"
+    },
+    "Comic": {
+      "ComicNameSelector": "",
+      "ComicChaptersSelector": ""
+    },
+    "Chapter": {
+      "ChapterImagesSelector": ""
+    }
+  },
+  {
+    "Url": "https://www.nettruyenco.com",
+    "Comics": {
+      "ComicUrlsSelector": "HTML > BODY > FORM > MAIN > DIV > DIV > DIV > DIV > DIV > DIV > DIV > DIV > FIGURE > FIGCAPTION > H3 > A",
+      "NextPageButtonSelector": "FORM:nth-child(1) > MAIN:nth-child(6) > DIV:nth-child(2) > DIV:nth-child(2) > DIV:nth-child(1) > DIV:nth-child(1) > DIV:nth-child(1) > DIV:nth-child(2) > UL:nth-child(1) > LI:nth-child(13) > A:nth-child(1)"
+    },
+    "Comic": {
+      "ComicNameSelector": null,
+      "ComicChaptersSelector": null
+    },
+    "Chapter": {
+      "ChapterImagesSelector": null
     }
   }
 ]

@@ -21,10 +21,7 @@
             <RowDefinition Height="30" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <view:TitleBarView
-            Grid.Row="0"
-            Background="#242423"
-            Tag="ComicDownloader" />
+        <view:TitleBarView Grid.Row="0" Tag="ComicDownloader" />
         <Grid Grid.Row="1">
             <view:DownloaderView HorizontalAlignment="Center" VerticalAlignment="Center" />
             <!--<view:SettingsView

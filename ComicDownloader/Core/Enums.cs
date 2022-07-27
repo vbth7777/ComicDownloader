@@ -8,7 +8,7 @@ namespace ComicDownloader.Core
 {
     public class Enums
     {
-        public enum DownloadType
+        public enum ComicType
         {
             Comics = 1,
             Comic = 2,

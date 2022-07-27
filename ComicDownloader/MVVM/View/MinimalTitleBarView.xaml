@@ -11,7 +11,7 @@
     Name="titleBar"
     d:DesignHeight="30"
     d:MinWidth="800"
-    Background="Transparent"
+    Background="#242423"
     mc:Ignorable="d">
     <UserControl.DataContext>
         <viewModel:MinimalTitleBarViewModel />
@@ -24,8 +24,9 @@
     <Grid>
         <materialDesign:PackIcon
             Width="40"
-            Height="{Binding ElementName=titleBar, Path=ActualHeight}"
+            Height="25"
             HorizontalAlignment="Left"
+            VerticalAlignment="Center"
             Foreground="White"
             Kind="Edit" />
         <TextBlock

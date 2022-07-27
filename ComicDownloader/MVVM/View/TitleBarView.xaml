@@ -11,7 +11,7 @@
     Name="titleBar"
     d:DesignHeight="30"
     d:MinWidth="800"
-    Background="Transparent"
+    Background="#242423"
     mc:Ignorable="d">
     <UserControl.DataContext>
         <viewModel:TitleBarViewModel />

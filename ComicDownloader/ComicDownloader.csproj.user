@@ -13,13 +13,25 @@
     <Compile Update="MVVM\View\MinimalTitleBarView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\NotifyOKWView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\NotifyYesNoWView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MVVM\View\SelectorsAdderWView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="MVVM\View\SelectorsEditorWView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\SelectorsGetterWView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MVVM\View\SettingsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\SuperMinimalTitleBarView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="MVVM\View\TitleBarView.xaml.cs">
@@ -36,13 +48,25 @@
     <Page Update="MVVM\View\MinimalTitleBarView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="MVVM\View\NotifyOKWView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\NotifyYesNoWView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MVVM\View\SelectorsAdderWView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\SelectorsEditorWView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="MVVM\View\SelectorsGetterWView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MVVM\View\SettingsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\SuperMinimalTitleBarView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\TitleBarView.xaml">

@@ -8,17 +8,17 @@ namespace ComicDownloader.Core
 {
     public class ComicsSelectors
     {
-        public string UrlComicsSelector { get; set; }
+        public string ComicUrlsSelector { get; set; }
         public string NextPageButtonSelector { get; set; }
     }
     public class ComicSelectors
     {
-        public string NameComicSelector { get; set; }
-        public string ChaptersComicSelector { get; set; }
+        public string ComicNameSelector { get; set; }
+        public string ComicChaptersSelector { get; set; }
     }
     public class ChapterSelectors
     {
-        public string ImagesChapterSelector { get; set; }
+        public string ChapterImagesSelector { get; set; }
     }
     public class WebsiteInformation
     {

@@ -33,8 +33,8 @@ namespace ComicDownloader.MVVM.ViewModel
             set { _SelectedWebsite = value; OnPropertyChanged(); }
         }
         
-        private Enums.DownloadType _SelectedType;
-        public Enums.DownloadType SelectedType
+        private Enums.ComicType _SelectedType;
+        public Enums.ComicType SelectedType
         {
             get { return _SelectedType; }
             set { _SelectedType = value; OnPropertyChanged(); }
@@ -135,7 +135,7 @@ namespace ComicDownloader.MVVM.ViewModel
             TypeComboBoxLoadedCommand = new RelayCommand<ComboBox>
             (
                 p => p is ComboBox ? true : false,
-                p => p.ItemsSource = Enum.GetNames(typeof(Enums.DownloadType))
+                p => p.ItemsSource = Enum.GetNames(typeof(Enums.ComicType))
             );
             DownloadCommand = new RelayCommand<object>(p => true, Download);
             CancelingDownloadingCommand = new RelayCommand<object>(p => true, CancelDownloading);
@@ -207,14 +207,14 @@ namespace ComicDownloader.MVVM.ViewModel
                 MessageBox.Show("You must type all of the input");
             }
             WebsiteInformation selectors = SelectedWebsite;
-            if (SelectedType == Enums.DownloadType.Chapter)
+            if (SelectedType == Enums.ComicType.Chapter)
             {
                 DownloadingTask = Task.Run(() => 
                 { 
                     Downloader.ChapterDownloader(UrlText, selectors, Path);
                 });
             }
-            else if (SelectedType == Enums.DownloadType.Comic)
+            else if (SelectedType == Enums.ComicType.Comic)
             {
                 DownloadingTask = Task.Run(() =>
                 {
@@ -224,7 +224,7 @@ namespace ComicDownloader.MVVM.ViewModel
                     DownloadingProgressCollapsed();
                 });
             }
-            else if (SelectedType == Enums.DownloadType.Comics)
+            else if (SelectedType == Enums.ComicType.Comics)
             {
                 DownloadingTask = Task.Run(() =>
                 {
