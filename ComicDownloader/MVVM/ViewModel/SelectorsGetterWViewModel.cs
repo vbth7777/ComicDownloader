@@ -29,24 +29,26 @@ $('*').click(function(e) {
   e.preventDefault();
 });
 function generateQuerySelectors (el) {
-  if (el.tagName.toLowerCase() == 'html')
-      return 'HTML';
-  var str = el.tagName;
-  if (el.className) {
+    if(el.tagName == 'HTML')
+	return 'html';
+    var str = el.tagName.toLowerCase();
+    if (el.className) {
       var classes = el.className.split(/\s/);
-  }
-  return generateQuerySelectors(el.parentNode) + ' > ' + str;
-}
-function generateQuerySelector(elm) {
-    if (elm.tagName === 'BODY') return 'BODY';
-    const names = [];
-    while (elm.parentElement && elm.tagName !== 'BODY') {
-	let c = 1, e = elm;
-	for (; e.previousElementSibling; e = e.previousElementSibling, c++) ;
-	names.unshift(elm.tagName + ':nth-child(' + c + ')');
-	elm = elm.parentElement;
     }
-    return names.join(' > ');
+    return generateQuerySelectors(el.parentNode) + ' > ' + str;
+}
+function generateQuerySelector(el){
+    if(el.tagName == 'HTML')
+	return 'html';
+    var str = el.tagName.toLowerCase();
+    str += (el.id != '') ? '#' + el.id : '';
+    if (el.className) {
+      var classes = el.className.split(/\s/);
+      for (var i = 0; i < classes.length; i++) {
+	  str += '.' + classes[i]
+      }
+    }
+    return generateQuerySelector(el.parentNode) + ' > ' + str.replaceAll('..', '.');
 }
 function changeTitle()
 {
@@ -144,7 +146,7 @@ document.addEventListener('click', onClick);
                     MessageBox.Show("You had full chapter selectors");
                     return;
                 }
-                GetterChecker();
+                if(HasProblemWithGetterChecker()) return;
                 SelectorsSetterMode = Enums.ComicType.Comics;
                 EnterToGetterMode(p.CoreWebView2);
                 await p.CoreWebView2.ExecuteScriptAsync("isHighlightAll = false");
@@ -158,7 +160,7 @@ document.addEventListener('click', onClick);
                     MessageBox.Show("You had full comic selectors");
                     return;
                 }
-                GetterChecker();
+                if(HasProblemWithGetterChecker()) return;
                 SelectorsSetterMode = Enums.ComicType.Comic;
                 EnterToGetterMode(p.CoreWebView2);
                 await p.CoreWebView2.ExecuteScriptAsync("isHighlightAll = false");
@@ -172,7 +174,7 @@ document.addEventListener('click', onClick);
                     MessageBox.Show("You had full comics selectors");
                     return;
                 }
-                GetterChecker();
+                if(HasProblemWithGetterChecker()) return;
                 SelectorsSetterMode = Enums.ComicType.Chapter;
                 EnterToGetterMode(p.CoreWebView2);
                 MessageOkDisplay("Please click to images chapter");
@@ -193,20 +195,24 @@ document.addEventListener('click', onClick);
         //    canClicked = false;
         //}
 
-        void GetterChecker()
+        bool HasProblemWithGetterChecker()
         {
+            bool HasProblem = true;
             if (!IsDOMContentLoaded)
             {
                 //alert
                 MessageBox.Show("Please wait for dom content loaded");
-                return;
             }
             else if(SelectorsSetterMode != 0)
             {
                 //alert
                 MessageBox.Show("You must done to set selectors");
-                return;
             }
+            else
+            {
+                HasProblem = false;
+            }
+            return HasProblem;
 
         }
         async void EnterToGetterMode(CoreWebView2 p)
@@ -257,6 +263,7 @@ try{Array.from(document.querySelector(ComicDownloader_IMGElementsSelector)).forE
                     if(!vm.IsYes)
                     {
                         NoClicked(coreWebView);
+                        await coreWebView.ExecuteScriptAsync("isHighlightAll = false");
                     }
                     else
                     {
@@ -292,6 +299,7 @@ try{Array.from(document.querySelector(ComicDownloader_IMGElementsSelector)).forE
                     if(!vm.IsYes)
                     {
                         NoClicked(coreWebView);
+                        await coreWebView.ExecuteScriptAsync("isHighlightAll = false");
                     }
                     else
                     {

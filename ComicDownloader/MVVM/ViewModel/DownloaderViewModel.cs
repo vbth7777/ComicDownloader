@@ -122,6 +122,7 @@ namespace ComicDownloader.MVVM.ViewModel
         public ICommand WebsitesComboBoxLoadedCommand { get; set; }
         public ICommand DownloadCommand { get; set; }
         public ICommand CancelingDownloadingCommand { get; set; }
+        public ICommand PathLoadedCommand { get; set; }
         #endregion
         public DownloaderViewModel()
         {
@@ -139,6 +140,13 @@ namespace ComicDownloader.MVVM.ViewModel
             );
             DownloadCommand = new RelayCommand<object>(p => true, Download);
             CancelingDownloadingCommand = new RelayCommand<object>(p => true, CancelDownloading);
+            PathLoadedCommand = new RelayCommand<TextBox>(p => p is TextBox ? true : false, p =>
+            {
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\" + "Downloads";
+                DownloadHelper.CreateDirectory(path);
+                p.Text = path;
+            });
+
         }
         void CancelDownloading(object p)
         {
@@ -206,6 +214,7 @@ namespace ComicDownloader.MVVM.ViewModel
                 //alert
                 MessageBox.Show("You must type all of the input");
             }
+            Path = Path.Replace(@"/", @"\");
             WebsiteInformation selectors = SelectedWebsite;
             if (SelectedType == Enums.ComicType.Chapter)
             {

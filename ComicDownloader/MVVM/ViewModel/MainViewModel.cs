@@ -12,7 +12,6 @@ namespace ComicDownloader.MVVM.ViewModel
     {
         public MainViewModel()
         {
-            //(new SelectorsGetterWView("http://www.nettruyenme.com/truyen-tranh/doc-bo-tieu-dao-24858")).ShowDialog();
         }
     }
 }

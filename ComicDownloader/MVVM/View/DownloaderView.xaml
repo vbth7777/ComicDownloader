@@ -98,11 +98,18 @@
                         Style="{StaticResource ModernTextBoxTheme}"
                         Text="{Binding UrlText}" />
                     <TextBox
+                        x:Name="tbPath"
                         Width="200"
                         Margin="0,10,0,0"
                         HorizontalAlignment="Left"
                         Style="{StaticResource ModernTextBoxTheme}"
-                        Text="{Binding Path}" />
+                        Text="{Binding Path}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Loaded">
+                                <i:InvokeCommandAction Command="{Binding PathLoadedCommand}" CommandParameter="{Binding ElementName=tbPath}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBox>
                 </StackPanel>
             </StackPanel>
             <StackPanel

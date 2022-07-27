@@ -1,58 +1,16 @@
 [
   {
-    "Url": "http://www.nettruyenco.com/",
+    "Url": "https://www.nettruyenme.com",
     "Comics": {
-      "ComicUrlsSelector": null,
-      "NextPageButtonSelector": ".items .item .jtip"
+      "ComicUrlsSelector": "html > body > form > main > div > div > div > div > div > div > div > div > figure > figcaption > h3 > a",
+      "NextPageButtonSelector": "html > body#ctl00_Body.homepage.vi-vn.site1 > form#aspnetForm > main.main > div.container > div.row > div#ctl00_divCenter.center-side.col-md-8 > div.Module.Module-163 > div.ModuleContent > div#ctl00_mainContent_ctl00_divPager.pagination-outter > ul.pagination > li > a.next-page"
     },
     "Comic": {
-      "ComicNameSelector": null,
-      "ComicChaptersSelector": null
+      "ComicNameSelector": "html > body#ctl00_Body.comic-detail.vi-vn.site1 > form#aspnetForm > main.main > div.container > div.row > div#ctl00_divCenter.center-side.col-md-8 > article#item-detail > h1.title-detail",
+      "ComicChaptersSelector": "html > body > form > main > div > div > div > article > div > nav > ul > li > div > a"
     },
     "Chapter": {
-      "ChapterImagesSelector": null
-    }
-  },
-  {
-    "Url": "123",
-    "Comics": {
-      "ComicUrlsSelector": "",
-      "NextPageButtonSelector": ""
-    },
-    "Comic": {
-      "ComicNameSelector": "",
-      "ComicChaptersSelector": ""
-    },
-    "Chapter": {
-      "ChapterImagesSelector": ""
-    }
-  },
-  {
-    "Url": "weqe",
-    "Comics": {
-      "ComicUrlsSelector": "asd",
-      "NextPageButtonSelector": "asdasd"
-    },
-    "Comic": {
-      "ComicNameSelector": "",
-      "ComicChaptersSelector": ""
-    },
-    "Chapter": {
-      "ChapterImagesSelector": ""
-    }
-  },
-  {
-    "Url": "https://www.nettruyenco.com",
-    "Comics": {
-      "ComicUrlsSelector": "HTML > BODY > FORM > MAIN > DIV > DIV > DIV > DIV > DIV > DIV > DIV > DIV > FIGURE > FIGCAPTION > H3 > A",
-      "NextPageButtonSelector": "FORM:nth-child(1) > MAIN:nth-child(6) > DIV:nth-child(2) > DIV:nth-child(2) > DIV:nth-child(1) > DIV:nth-child(1) > DIV:nth-child(1) > DIV:nth-child(2) > UL:nth-child(1) > LI:nth-child(13) > A:nth-child(1)"
-    },
-    "Comic": {
-      "ComicNameSelector": null,
-      "ComicChaptersSelector": null
-    },
-    "Chapter": {
-      "ChapterImagesSelector": null
+      "ChapterImagesSelector": "html > body > form > main > div > div > div > div > div > div > img"
     }
   }
 ]
