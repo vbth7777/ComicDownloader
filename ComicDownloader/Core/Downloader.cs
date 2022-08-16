@@ -64,8 +64,13 @@ namespace ComicDownloader.Core
     }
     public static class Downloader
     {
+        public static bool IsCancelled { get; set; }
         public static void ChapterDownloader(string chapterUrl, WebsiteInformation cssSelectors, string path)
         {
+            if (IsCancelled)
+            {
+                return;
+            }
             try
             {
                 HtmlNode chapterNode = DownloadHelper.GetDocumentNode(chapterUrl);
@@ -111,6 +116,10 @@ namespace ComicDownloader.Core
             bool isFirstDownloading = false;
             foreach (HtmlNode chapterNode in chapterNodes)
             {
+                if (IsCancelled)
+                {
+                    return;
+                }
                 if (chapterNode.GetAttributeValue("href", null) is null)
                 {
                     throw new Exceptions.WrongTagElementException("Not a tag element");
@@ -150,6 +159,10 @@ namespace ComicDownloader.Core
                 float onePercentComicOfPage = (float)1 / comicNodes.Length * 100;
                 foreach (HtmlNode comicNode in comicNodes)
                 {
+                    if (IsCancelled)
+                    {
+                        return;
+                    }
                     string comicUrl = HtmlEntity.DeEntitize(comicNode.GetAttributeValue("href", null));
                     if (comicUrl is null)
                         continue;

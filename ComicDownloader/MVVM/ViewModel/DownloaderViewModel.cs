@@ -1,5 +1,6 @@
 ﻿using ComicDownloader.Core;
 using System;
+using System.Threading;
 using System.Windows.Input;
 using ComicDownloader.MVVM.View;
 using System.Windows.Controls;
@@ -126,9 +127,17 @@ namespace ComicDownloader.MVVM.ViewModel
         #endregion
         public DownloaderViewModel()
         {
+            Load();
+        }
+        void Load()
+        {
             IsEditSelectorsButtonEnable = false;
             DownloadingProgressVisibility = Visibility.Collapsed;
             DownloadingProgressPageTotalVisibility = Visibility.Collapsed;
+            LoadCommands();
+        }
+        void LoadCommands()
+        {
             SelectorsEditorDisplayCommand = new RelayCommand<ComboBox>(p => true, SelectorsEditorDisplay);
             SelectorsAdderDisplayCommand = new RelayCommand<ComboBox>(p => true, SelectorsAdderDisplay);
             SelectedWebsiteCommand = new RelayCommand<object>(p => true, p => IsEditSelectorsButtonEnable = true);
@@ -150,13 +159,19 @@ namespace ComicDownloader.MVVM.ViewModel
         }
         void CancelDownloading(object p)
         {
-            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
-            Application.Current.Shutdown();
+            Downloader.IsCancelled = true;
+            //alert
+            MessageBox.Show("Downloading is cancelled");
+            DownloadingProgressCollapsed();
+            //System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+            //Application.Current.Shutdown();
             //DownloadingTask.Dispose();
             //DownloadingProgressCollapsed();
         }
         void DownloadingProgressDisplay()
         {
+            DownloadingProgressComicsOfPagePercent = 0;
+            DownloadingProgressComicPercent = 0;
             DownloadingInputVisibility = Visibility.Collapsed;
             DownloadingProgressVisibility = Visibility.Visible;
         }
@@ -209,6 +224,7 @@ namespace ComicDownloader.MVVM.ViewModel
         }
         void Download(object p)
         {
+            Downloader.IsCancelled = false;
             if (UrlText is null || UrlText == "" || Path == "" || SelectedWebsite is null || SelectedType == 0)
             {
                 //alert

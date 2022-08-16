@@ -12,37 +12,61 @@ namespace ComicDownloader.Helper
     public static class HttpHelper
     {
         private static readonly HttpClient _httpClient = new HttpClient();
+        private static int downloadingTask = 0;
+        private static int downloadingTaskLimit = 5;
 
         public static void DownloadFile(string uri, string outputPath, string referer = null, string userAgent = null)
         {
             Uri uriResult;
             bool haveReferer = !(referer is null);
             bool haveUserAgent = !(userAgent is null);
+
             if (haveReferer || haveUserAgent)
             {
                 _httpClient.DefaultRequestHeaders.Clear();
             }
-            if (haveReferer)
+            if (haveReferer && _httpClient.DefaultRequestHeaders.Referrer == null)
             {
-                _httpClient.DefaultRequestHeaders.Add("Referer", referer);
+                //_httpClient.DefaultRequestHeaders.Add("Referer", referer);
+                _httpClient.DefaultRequestHeaders.Referrer = new Uri(referer);
             }
             if (haveUserAgent)
             {
                 _httpClient.DefaultRequestHeaders.Add("User-Agent", userAgent);
             }
-
             if (!Uri.TryCreate(uri, UriKind.Absolute, out uriResult))
                 throw new InvalidOperationException("URI is invalid.");
 
+            //throw new FileNotFoundException("File not found."
+            //, nameof(outputPath));
+            DownloadFileRecurse(outputPath, uri);
+        }
+        private static async void DownloadFileRecurse(string outputPath, string uri)
+        {
+            while (downloadingTask >= downloadingTaskLimit)
+            {
+                await Task.Delay(1000);
+            }
             if (!File.Exists(outputPath))
             {
                 File.Create(outputPath).Close();
             }
-            //throw new FileNotFoundException("File not found."
-            //, nameof(outputPath));
-            byte[] fileBytes = _httpClient.GetByteArrayAsync(uri).Result;
-            File.WriteAllBytes(outputPath, fileBytes);
+            Task<byte[]> fileBytesTask = _httpClient.GetByteArrayAsync(uri);
+            downloadingTask++;
+            fileBytesTask.ContinueWith(t =>
+            {
+                if (t.IsFaulted || t.IsCanceled)
+                {
+                    DownloadFileRecurse(outputPath, uri);
+                }
+                else
+                {
+                    File.WriteAllBytes(outputPath, t.Result);
+                    downloadingTask--;
+                }
+            });
         }
+
         public static Task<string> DownloadStringAsync(string uri, string referer = null, string userAgent = null)
         {
             bool haveReferer = !(referer is null);
@@ -67,4 +91,5 @@ namespace ComicDownloader.Helper
             _httpClient.Dispose();
         }
     }
+
 }
