@@ -73,7 +73,7 @@ namespace ComicDownloader.Core
             }
             try
             {
-                HtmlNode chapterNode = DownloadHelper.GetDocumentNode(chapterUrl);
+                HtmlNode chapterNode = DownloadHelper.GetDocumentNode(chapterUrl, cssSelectors.Url);
                 HtmlNode[] imageNodes = chapterNode.QuerySelectorAll(cssSelectors.Chapter.ChapterImagesSelector).ToArray();
                 List<string> imageUrls = new List<string>();
                 foreach (HtmlNode imageNode in imageNodes)
@@ -104,7 +104,7 @@ namespace ComicDownloader.Core
             TaskDownloader functionBeforeDownloadingChapter = null)
         {
             comicPath = DownloadHelper.GetValidDirectoryPath(comicPath);
-            HtmlNode comicNode = DownloadHelper.GetDocumentNode(url);
+            HtmlNode comicNode = DownloadHelper.GetDocumentNode(url, cssSelectors.Url);
             string comicName = comicNode.QuerySelector(cssSelectors.Comic.ComicNameSelector).InnerText.Trim();
             HtmlNode[] chapterNodes = comicNode.QuerySelectorAll(cssSelectors.Comic.ComicChaptersSelector).Reverse().ToArray();
             comicPath += DownloadHelper.GetValidDirectoryName(comicName) + "\\";
@@ -152,7 +152,7 @@ namespace ComicDownloader.Core
             TaskDownloader functionAfterDownloadedComic = null)
         {
             comicsPath = DownloadHelper.GetValidDirectoryPath(comicsPath);
-            HtmlNode comicsNode = DownloadHelper.GetDocumentNode(url);
+            HtmlNode comicsNode = DownloadHelper.GetDocumentNode(url, cssSelectors.Url);
             while (true)
             {
                 HtmlNode[] comicNodes = comicsNode.QuerySelectorAll(cssSelectors.Comics.ComicUrlsSelector).ToArray();
@@ -173,7 +173,7 @@ namespace ComicDownloader.Core
                 string nextPageUrl = HtmlEntity.DeEntitize(comicsNode.QuerySelector(cssSelectors.Comics.NextPageButtonSelector).GetAttributeValue("href", null));
                 if (nextPageUrl is null)
                     continue;
-                comicsNode = DownloadHelper.GetDocumentNode(nextPageUrl);
+                comicsNode = DownloadHelper.GetDocumentNode(nextPageUrl, cssSelectors.Url);
             }
         }
 
