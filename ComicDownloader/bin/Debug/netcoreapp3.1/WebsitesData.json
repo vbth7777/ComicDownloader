@@ -1,6 +1,6 @@
 [
   {
-    "Url": "https://www.nettruyenme.com",
+    "Url": "http://www.nettruyenme.com",
     "Comics": {
       "ComicUrlsSelector": "html > body > form > main > div > div > div > div > div > div > div > div > figure > figcaption > h3 > a",
       "NextPageButtonSelector": "html > body#ctl00_Body.homepage.vi-vn.site1 > form#aspnetForm > main.main > div.container > div.row > div#ctl00_divCenter.center-side.col-md-8 > div.Module.Module-163 > div.ModuleContent > div#ctl00_mainContent_ctl00_divPager.pagination-outter > ul.pagination > li > a.next-page"

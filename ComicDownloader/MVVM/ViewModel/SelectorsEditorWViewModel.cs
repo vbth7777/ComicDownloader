@@ -12,9 +12,12 @@ namespace ComicDownloader.MVVM.ViewModel
 {
     internal class SelectorsEditorWViewModel : SelectorsAdderAndEditor
     {
+        private string currentWebsite = null;
+        public ICommand WebsiteTextLoaded { get; set; }
         public SelectorsEditorWViewModel()
         {
             ConfirmCommand = new RelayCommand<Button>(p => true, EditSelectors);
+            WebsiteTextLoaded = new RelayCommand<TextBox>(p => p is TextBox ? true : false, LoadWebsiteText);
         }
         public SelectorsEditorWViewModel(WebsiteInformation css)
         {
@@ -26,7 +29,13 @@ namespace ComicDownloader.MVVM.ViewModel
             ChapterImagesSelector = css.Chapter.ChapterImagesSelector;
 
             ConfirmCommand = new RelayCommand<Button>(p => true, EditSelectors);
+            WebsiteTextLoaded = new RelayCommand<TextBox>(p => p is TextBox ? true : false, LoadWebsiteText);
         }
+        void LoadWebsiteText(TextBox p)
+        {
+            currentWebsite = p.Text;
+        }
+
         void EditSelectors(Button p)
         {
             string filePath = Variables.DataFilePath;
@@ -34,10 +43,11 @@ namespace ComicDownloader.MVVM.ViewModel
             int length = csses.Length;
             for(int i = 0; i < length; i++)
             {
-                if(csses[i].Url != Website)
+                if(csses[i].Url != currentWebsite)
                 {
                     continue;
                 }
+                csses[i].Url = Website;
                 csses[i].Comics.NextPageButtonSelector = NextPageButtonSelector;
                 csses[i].Comics.ComicUrlsSelector = ComicUrlsSelector;
                 csses[i].Comic.ComicNameSelector = ComicNameSelector;

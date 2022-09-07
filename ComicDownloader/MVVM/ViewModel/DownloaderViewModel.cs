@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows;
 using System.Threading.Tasks;
 using ComicDownloader.Helper;
+using System.Linq;
 
 namespace ComicDownloader.MVVM.ViewModel
 {
@@ -32,6 +33,12 @@ namespace ComicDownloader.MVVM.ViewModel
         {
             get { return _SelectedWebsite; }
             set { _SelectedWebsite = value; OnPropertyChanged(); }
+        }
+        private int _SelectedWebsiteIndex;
+        public int SelectedWebsiteIndex
+        {
+            get { return _SelectedWebsiteIndex; }
+            set { _SelectedWebsiteIndex = value; OnPropertyChanged(); }
         }
         
         private Enums.ComicType _SelectedType;
@@ -124,6 +131,7 @@ namespace ComicDownloader.MVVM.ViewModel
         public ICommand DownloadCommand { get; set; }
         public ICommand CancelingDownloadingCommand { get; set; }
         public ICommand PathLoadedCommand { get; set; }
+        public ICommand RemoveWebsiteCommand { get; set; }
         #endregion
         public DownloaderViewModel()
         {
@@ -151,10 +159,12 @@ namespace ComicDownloader.MVVM.ViewModel
             CancelingDownloadingCommand = new RelayCommand<object>(p => true, CancelDownloading);
             PathLoadedCommand = new RelayCommand<TextBox>(p => p is TextBox ? true : false, p =>
             {
-                string path = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\" + "Downloads";
+                string homePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                string path =  DownloadHelper.GetValidDirectoryPath(homePath) + "Downloads";
                 DownloadHelper.CreateDirectory(path);
-                p.Text = path;
+                Path = path;
             });
+            RemoveWebsiteCommand = new RelayCommand<object>(p => true, p => RemoveWebsite());
 
         }
         void CancelDownloading(object p)
@@ -182,17 +192,35 @@ namespace ComicDownloader.MVVM.ViewModel
         }
         void SelectorsEditorDisplay(ComboBox p)
         {
-            int tempSeleted = p.SelectedIndex;
+            int tempSelected = SelectedWebsiteIndex;
             (new SelectorsEditorWView(p.SelectedValue as WebsiteInformation)).ShowDialog();
             LoadWebsites();
-            p.SelectedIndex = tempSeleted;
+            SelectedWebsiteIndex = tempSelected;
         }
         void SelectorsAdderDisplay(ComboBox p)
         {
-            int tempSeleted = p.SelectedIndex;
+            int tempSelected = SelectedWebsiteIndex;
+            int oldLength = Websites.Length;
             (new SelectorsAdderWView()).ShowDialog();
             LoadWebsites();
-            p.SelectedIndex = tempSeleted;
+            int currentLength = Websites.Length;
+            if (oldLength < currentLength)
+            {
+                SelectedWebsiteIndex = currentLength - 1;
+            }
+            else
+            {
+                SelectedWebsiteIndex = tempSelected;
+            }
+        }
+        void RemoveWebsite()
+        {
+            string filePath = Variables.DataFilePath;
+            WebsiteInformation[] csses = JsonHelper.GetDeserializeJsonFromFile<WebsiteInformation[]>(filePath);
+            csses = csses.Where(x => x.Url != SelectedWebsite.Url).ToArray();
+            JsonHelper.SerializeAndSaveJson(csses, filePath);
+            LoadWebsites();
+            SelectedWebsiteIndex = Websites.Length - 1;
         }
         void LoadWebsites(object p = null)
         {

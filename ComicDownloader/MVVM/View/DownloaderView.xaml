@@ -40,6 +40,7 @@
                             Width="200"
                             MinHeight="20"
                             Padding="5"
+                            SelectedIndex="{Binding SelectedWebsiteIndex}"
                             HorizontalContentAlignment="Left"
                             materialDesign:ColorZoneAssist.Mode="Inverted"
                             BorderBrush="White"
@@ -70,6 +71,16 @@
                             Command="{Binding SelectorsEditorDisplayCommand}"
                             CommandParameter="{Binding ElementName=cbWebsites}"
                             Content="Edit Selectors"
+                            IsEnabled="{Binding IsEditSelectorsButtonEnable}"
+                            Style="{StaticResource ModernButtonTheme}" />
+                        <Button
+                            Width="75"
+                            Margin="10,0,10,0"
+                            Background="#b53838"
+                            Command="{Binding RemoveWebsiteCommand}"
+                            CommandParameter="{Binding ElementName=cbWebsites}"
+                            Content="Remove"
+                            Foreground="White"
                             IsEnabled="{Binding IsEditSelectorsButtonEnable}"
                             Style="{StaticResource ModernButtonTheme}" />
                     </StackPanel>
