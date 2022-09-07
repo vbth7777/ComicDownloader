@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using static ComicDownloader.Core.DownloadHelper;
 
 namespace ComicDownloader.Core
@@ -65,11 +66,15 @@ namespace ComicDownloader.Core
     public static class Downloader
     {
         public static bool IsCancelled { get; set; }
-        public static void ChapterDownloader(string chapterUrl, WebsiteInformation cssSelectors, string path)
+        public async static Task ChapterDownloader(string chapterUrl, WebsiteInformation cssSelectors, string path)
         {
             if (IsCancelled)
             {
                 return;
+            }
+            while (HttpHelper.DownloadingTask >= HttpHelper.DownloadingTaskLimit)
+            {
+                await Task.Delay(1000);
             }
             try
             {
@@ -96,10 +101,10 @@ namespace ComicDownloader.Core
             }
             catch
             {
-                ChapterDownloader(chapterUrl, cssSelectors, path);
+                await ChapterDownloader(chapterUrl, cssSelectors, path);
             }
         }
-        public static void ComicDownloader(string url, WebsiteInformation cssSelectors, string comicPath,
+        public async static Task ComicDownloader(string url, WebsiteInformation cssSelectors, string comicPath,
             TaskDownloader functionBeforeDownloadingComic = null,
             TaskDownloader functionBeforeDownloadingChapter = null)
         {
@@ -132,7 +137,7 @@ namespace ComicDownloader.Core
                 functionBeforeDownloadingChapter(chapterName, onePercent, isFirstDownloading);
                 isFirstDownloading = true;
                 DownloadHelper.CreateDirectory(chapterPath);
-                ChapterDownloader(chapterUrl, cssSelectors, chapterPath);
+                await ChapterDownloader(chapterUrl, cssSelectors, chapterPath);
             }
             //int pathsLength = chapterPaths.Count();
             //int urlsLength = chapterUrls.Count();
@@ -145,7 +150,7 @@ namespace ComicDownloader.Core
             //    ChapterDownloader(chapterUrls[i], chapterPaths[i]);
             //}
         }
-        public static void ComicsDownloader(string url, WebsiteInformation cssSelectors, string comicsPath,
+        public async static Task ComicsDownloader(string url, WebsiteInformation cssSelectors, string comicsPath,
             TaskDownloader functionBeforeDownloadingComic = null,
             TaskDownloader functionBeforeDownloadingChapter = null,
             TaskDownloader functionAfterDownloadedComics = null,
@@ -166,7 +171,7 @@ namespace ComicDownloader.Core
                     string comicUrl = HtmlEntity.DeEntitize(comicNode.GetAttributeValue("href", null));
                     if (comicUrl is null)
                         continue;
-                    ComicDownloader(comicUrl, cssSelectors, comicsPath, functionBeforeDownloadingComic, functionBeforeDownloadingChapter);
+                    await ComicDownloader(comicUrl, cssSelectors, comicsPath, functionBeforeDownloadingComic, functionBeforeDownloadingChapter);
                     functionAfterDownloadedComic(null, onePercentComicOfPage);
                 }
                 functionAfterDownloadedComics(null, onePercentComicOfPage);

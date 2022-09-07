@@ -12,8 +12,8 @@ namespace ComicDownloader.Helper
     public static class HttpHelper
     {
         private static readonly HttpClient _httpClient = new HttpClient();
-        private static int downloadingTask = 0;
-        private static int downloadingTaskLimit = 5;
+        public static int DownloadingTask = 0;
+        public static int DownloadingTaskLimit = 5;
 
         public static void DownloadFile(string uri, string outputPath, string referer = null, string userAgent = null)
         {
@@ -43,7 +43,7 @@ namespace ComicDownloader.Helper
         }
         private static async void DownloadFileRecurse(string outputPath, string uri)
         {
-            while (downloadingTask >= downloadingTaskLimit)
+            while (DownloadingTask >= DownloadingTaskLimit)
             {
                 await Task.Delay(1000);
             }
@@ -52,7 +52,7 @@ namespace ComicDownloader.Helper
                 File.Create(outputPath).Close();
             }
             Task<byte[]> fileBytesTask = _httpClient.GetByteArrayAsync(uri);
-            downloadingTask++;
+            DownloadingTask++;
             fileBytesTask.ContinueWith(t =>
             {
                 if (t.IsFaulted || t.IsCanceled)
@@ -62,7 +62,7 @@ namespace ComicDownloader.Helper
                 else
                 {
                     File.WriteAllBytes(outputPath, t.Result);
-                    downloadingTask--;
+                    DownloadingTask--;
                 }
             });
         }

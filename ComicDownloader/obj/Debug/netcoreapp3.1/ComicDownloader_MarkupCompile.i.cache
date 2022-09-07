@@ -16,5 +16,5 @@ C:\Users\Admin\Downloads\Public\Projects\Downloader\ComicDownloader\ComicDownloa
 202-566773917
 MainWindow.xaml;MVVM\View\DownloaderView.xaml;MVVM\View\MinimalTitleBarView.xaml;MVVM\View\NotifyOKWView.xaml;MVVM\View\NotifyYesNoWView.xaml;MVVM\View\SelectorsAdderWView.xaml;MVVM\View\SelectorsEditorWView.xaml;MVVM\View\SelectorsGetterWView.xaml;MVVM\View\SettingsView.xaml;MVVM\View\SuperMinimalTitleBarView.xaml;MVVM\View\TitleBarView.xaml;Theme\ModernButtonTheme.xaml;Theme\ModernTextBoxTheme.xaml;
 
-False
+True
 

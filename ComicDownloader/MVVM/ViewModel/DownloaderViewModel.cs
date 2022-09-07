@@ -252,6 +252,7 @@ namespace ComicDownloader.MVVM.ViewModel
         }
         void Download(object p)
         {
+            HttpHelper.DownloadingTask = 0;
             Downloader.IsCancelled = false;
             if (UrlText is null || UrlText == "" || Path == "" || SelectedWebsite is null || SelectedType == 0)
             {
@@ -262,28 +263,28 @@ namespace ComicDownloader.MVVM.ViewModel
             WebsiteInformation selectors = SelectedWebsite;
             if (SelectedType == Enums.ComicType.Chapter)
             {
-                DownloadingTask = Task.Run(() => 
+                DownloadingTask = Task.Run(async () => 
                 { 
-                    Downloader.ChapterDownloader(UrlText, selectors, Path);
+                    await Downloader.ChapterDownloader(UrlText, selectors, Path);
                 });
             }
             else if (SelectedType == Enums.ComicType.Comic)
             {
-                DownloadingTask = Task.Run(() =>
+                DownloadingTask = Task.Run(async () =>
                 {
                     DownloadingProgressDisplay();
-                    Downloader.ComicDownloader(UrlText, selectors, Path,
+                    await Downloader.ComicDownloader(UrlText, selectors, Path,
                         BeforeDownloadingComic, BeforeDownloadingChapter);
                     DownloadingProgressCollapsed();
                 });
             }
             else if (SelectedType == Enums.ComicType.Comics)
             {
-                DownloadingTask = Task.Run(() =>
+                DownloadingTask = Task.Run(async () =>
                 {
                     DownloadingProgressPageTotalVisibility = Visibility.Visible;
                     DownloadingProgressDisplay();
-                    Downloader.ComicsDownloader(UrlText, selectors, Path,
+                    await Downloader.ComicsDownloader(UrlText, selectors, Path,
                         BeforeDownloadingComic, BeforeDownloadingChapter,
                         AfterDownloadedComics, AfterDownloadedComic);
                     DownloadingProgressCollapsed();
