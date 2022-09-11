@@ -14,22 +14,22 @@
 
 ## Images
 
-#### Home
+### Home
 
 ![Home](./ComicDownloader/Image/home.png)
 
-#### Add css selectors
+### Add css selectors
 
 ![Add Selectors Image](./ComicDownloader/Image/addCssSelectors.png)
 
-#### Edit css selectors
+### Edit css selectors
 
 ![Edit Selectors Image](./ComicDownloader/Image/editCssSelectors.png)
 
-#### Get css selectors by WebView2 (Selectors Setter)
+### Get css selectors by WebView2 (Selectors Setter)
 
 ![Selectors Setter Image](./ComicDownloader/Image/selectorsSetter.png)
 
-#### Downloading Screen
+### Downloading Screen
 
 ![Downloading Screen](./ComicDownloader/Image/downloadingScreen.png)
